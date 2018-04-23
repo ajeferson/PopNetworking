@@ -1,0 +1,6 @@
+framework module PopNetworking {
+  umbrella header "PopNetworking-umbrella.h"
+
+  export *
+  module * { export * }
+}

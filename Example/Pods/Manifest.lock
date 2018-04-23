@@ -1,0 +1,27 @@
+PODS:
+  - Nimble (7.0.3)
+  - PopNetworking (0.1.0)
+  - Quick (1.2.0)
+
+DEPENDENCIES:
+  - Nimble (~> 7.0.2)
+  - PopNetworking (from `../`)
+  - Quick (~> 1.2.0)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Nimble
+    - Quick
+
+EXTERNAL SOURCES:
+  PopNetworking:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Nimble: 7f5a9c447a33002645a071bddafbfb24ea70e0ac
+  PopNetworking: 9cfbc21187b8bef26ffd089a8f58c1e54c371221
+  Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
+
+PODFILE CHECKSUM: e759b0c791805c680217ee3aa71a75e40361551d
+
+COCOAPODS: 1.5.0
