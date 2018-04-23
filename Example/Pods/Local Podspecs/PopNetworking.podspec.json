@@ -18,5 +18,16 @@
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "PopNetworking/Classes/**/*"
+  "source_files": "PopNetworking/Classes/**/*",
+  "dependencies": {
+    "RxSwift": [
+      "~> 4.0"
+    ],
+    "RxCocoa": [
+      "~> 4.0"
+    ],
+    "Alamofire": [
+      "~> 4.7"
+    ]
+  }
 }

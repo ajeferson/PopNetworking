@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2833D2B9208E2CCC002A7DD6 /* AlbumService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2833D2B8208E2CCC002A7DD6 /* AlbumService.swift */; };
+		2833D2C4208E3040002A7DD6 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2833D2C3208E3040002A7DD6 /* Album.swift */; };
+		2833D2D2208E4EDC002A7DD6 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2833D2D1208E4EDC002A7DD6 /* Networking.swift */; };
 		3A3F3241EF686A75BFC879CC /* Pods_PopNetworking_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96F6A56A60A0324D63812D94 /* Pods_PopNetworking_Tests.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
@@ -29,6 +32,9 @@
 
 /* Begin PBXFileReference section */
 		15CDE6708FB63F29A3BCC5F6 /* Pods-PopNetworking_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PopNetworking_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PopNetworking_Tests/Pods-PopNetworking_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		2833D2B8208E2CCC002A7DD6 /* AlbumService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumService.swift; sourceTree = "<group>"; };
+		2833D2C3208E3040002A7DD6 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
+		2833D2D1208E4EDC002A7DD6 /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		40C62D5CB804939D56A227EF /* Pods-PopNetworking_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PopNetworking_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PopNetworking_Example/Pods-PopNetworking_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		491762331CB807C4EBD95BF1 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		5C7E6024D275AD5CE396BC9A /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
@@ -46,7 +52,7 @@
 		86BF47A65D31F7EA92C83ED8 /* Pods-PopNetworking_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PopNetworking_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PopNetworking_Tests/Pods-PopNetworking_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		96F6A56A60A0324D63812D94 /* Pods_PopNetworking_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PopNetworking_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9ACBBE0705C6D9584C7E1CE /* Pods_PopNetworking_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PopNetworking_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BD8CB8EADAFBA2E656120D9E /* PopNetworking.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = PopNetworking.podspec; path = ../PopNetworking.podspec; sourceTree = "<group>"; };
+		BD8CB8EADAFBA2E656120D9E /* PopNetworking.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = PopNetworking.podspec; path = ../PopNetworking.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,11 +86,19 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		2833D2D0208E4EC3002A7DD6 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				2833D2D1208E4EDC002A7DD6 /* Networking.swift */,
+			);
+			name = Config;
+			sourceTree = "<group>";
+		};
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
-				607FACD21AFB9204008FA782 /* Example for PopNetworking */,
+				607FACD21AFB9204008FA782 /* Example */,
 				607FACE81AFB9204008FA782 /* Tests */,
 				607FACD11AFB9204008FA782 /* Products */,
 				216A9A1BADB66C896AD15096 /* Pods */,
@@ -101,17 +115,20 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		607FACD21AFB9204008FA782 /* Example for PopNetworking */ = {
+		607FACD21AFB9204008FA782 /* Example */ = {
 			isa = PBXGroup;
 			children = (
+				2833D2D0208E4EC3002A7DD6 /* Config */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
+				2833D2B8208E2CCC002A7DD6 /* AlbumService.swift */,
+				2833D2C3208E3040002A7DD6 /* Album.swift */,
 			);
-			name = "Example for PopNetworking";
+			name = Example;
 			path = PopNetworking;
 			sourceTree = "<group>";
 		};
@@ -289,11 +306,17 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-PopNetworking_Example/Pods-PopNetworking_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/PopNetworking/PopNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PopNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -346,7 +369,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				2833D2D2208E4EDC002A7DD6 /* Networking.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				2833D2B9208E2CCC002A7DD6 /* AlbumService.swift in Sources */,
+				2833D2C4208E3040002A7DD6 /* Album.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
