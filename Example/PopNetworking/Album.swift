@@ -7,10 +7,12 @@
 //
 
 import Foundation
+import PopNetworking
 
-struct Album: Codable {
+struct Album: Fetchable {
     
-    // TODO release_date
+    typealias PrimaryKey = Int
+    
     let id: Int
     let title: String
     let description: String?
@@ -19,8 +21,10 @@ struct Album: Codable {
     
 }
 
-struct AlbumList: Codable {
+extension Album {
     
-    let albums: [Album]
+    init(id: Int) {
+        self.init(id: id, title: "", description: nil, artist: "", duration: 0)
+    }
     
 }

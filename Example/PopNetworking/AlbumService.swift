@@ -11,28 +11,57 @@ import RxSwift
 import RxCocoa
 import PopNetworking
 
-class AlbumService: Fetchable {
+class AlbumService: Fetcher {
     
     typealias Model = Album
-    typealias ModelList = AlbumList
     
     private let disposeBag = DisposeBag()
     
     func fetchAlbums() {
         
-        fetchList()
+//        fetchList()
+//            .subscribeOn(Schedulers.io)
+//            .observeOn(Schedulers.main)
+//            .subscribe(onNext: { albums in
+//
+//                albums.forEach {
+//                    print($0)
+//                }
+//
+//            }, onError: { error in
+//
+//                debugPrint(error)
+//
+//            })
+//            .disposed(by: disposeBag)
+        
+//        fetchList(atPath: "top")
+//            .subscribeOn(Schedulers.io)
+//            .observeOn(Schedulers.main)
+//            .subscribe(onNext: { albums in
+//
+//                albums.forEach {
+//                    print($0)
+//                }
+//
+//            }, onError: { error in
+//
+//                debugPrint(error)
+//
+//            })
+//            .disposed(by: disposeBag)
+
+        let album = Album(id: 1)
+        fetchOne(album)
             .subscribeOn(Schedulers.io)
             .observeOn(Schedulers.main)
-            .subscribe(onNext: { albumList in
+            .subscribe(onNext: { album in
 
-                let albums = albumList.albums
-                albums.forEach {
-                    print($0)
-                }
+                print(album)
 
-                }, onError: { error in
+            }, onError: { error in
 
-                    debugPrint(error)
+                debugPrint(error)
 
             })
             .disposed(by: disposeBag)

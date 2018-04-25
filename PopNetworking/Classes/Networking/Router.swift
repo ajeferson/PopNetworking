@@ -15,6 +15,10 @@ public protocol Router {
     
     var index: String { get }
     
+    func show(_ id: Any) -> String
+    
+    func collection(path: String) -> String
+    
 }
 
 // TODO Pluralize
@@ -22,6 +26,14 @@ extension Router {
     
     var index: String {
         return "\(baseUrl)/\(model)s"
+    }
+    
+    func show(_ id: Any) -> String {
+        return "\(index)/\(id)"
+    }
+    
+    func collection(path: String) -> String {
+        return "\(index)/\(path)"
     }
     
 }

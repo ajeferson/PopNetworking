@@ -10,6 +10,7 @@ import Foundation
 public enum PopError: String, Error {
     
     case network = "Check your internet connection"
+    case decode = "Could not parse data"
     case unknown = "An error has occurred, please try again later"
     
 }

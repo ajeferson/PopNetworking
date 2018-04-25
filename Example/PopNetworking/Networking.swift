@@ -12,7 +12,7 @@ import PopNetworking
 extension PopNetworking {
     
     var baseUrl: String {
-        return "http://192.168.0.102:3000"
+        return "http://172.20.10.2:3000"
     }
     
 }
