@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import PopNetworking
 
-class AlbumService: Fetcher, Creator {
+class AlbumService: Manager {
     
     typealias Model = Album
     
@@ -31,8 +31,19 @@ class AlbumService: Fetcher, Creator {
         //            })
         //            .disposed(by: disposeBag)
         
-        let album = Album(id: 11, title: "title", description: "description", artist: "artist", duration: 100)
-        create(album)
+//        let album = Album(id: 11, title: "title", description: "description", artist: "artist", duration: 100)
+//        create(album)
+//            .subscribeOn(Schedulers.io)
+//            .observeOn(Schedulers.main)
+//            .subscribe(onNext: { album in
+//                print(album)
+//            }, onError: { error in
+//                print(error)
+//            })
+//            .disposed(by: disposeBag)
+        
+        let album = Album(id: 6, title: "updated", description: "description", artist: "artist", duration: 100)
+        update(album)
             .subscribeOn(Schedulers.io)
             .observeOn(Schedulers.main)
             .subscribe(onNext: { album in

@@ -15,7 +15,7 @@ public protocol Creator: PopNetworking {
 
 extension Creator {
      
-    public func create(_ model: Model, options: DecodeOptions = DecodeOptions.memberKey) -> Observable<Model> {
+    public func create(_ model: Model, options: DecodeOptions = .memberKey) -> Observable<Model> {
         let data = try! JSONEncoder().encode(model)
         let encoding = CustomDataEncoding(data: data)
         return rxRequest(url: router.index, method: .post, parameters: nil, encoding: encoding, headers: Self.jsonHeaders, options: DecodeOptions.memberKey)
