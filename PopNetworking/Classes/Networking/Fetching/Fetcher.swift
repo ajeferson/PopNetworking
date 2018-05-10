@@ -19,13 +19,11 @@ public protocol Fetcher: PopNetworking {
 public extension Fetcher {
     
     func fetchList(options: DecodeOptions = .collectionKey) -> Observable<[Model]> {
-        let observable: Observable<[Model]> = rxRequest(url: router.index, options: options)
-        return observable
+        return rxRequest(url: router.index, options: options)
     }
 
     func fetchList(atPath path: String, options: DecodeOptions = .collectionKey) -> Observable<[Model]> {
-        let observable: Observable<[Model]> = rxRequest(url: router.collection(path: path), options: options)
-        return observable
+        return rxRequest(url: router.collection(path: path), options: options)
     }
     
     func fetchOne<M: Fetchable>(_ model: M, options: DecodeOptions = .memberKey) -> Observable<Model> {

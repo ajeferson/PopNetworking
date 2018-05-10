@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import PopNetworking
 
-class AlbumService: Fetcher {
+class AlbumService: Fetcher, Creator {
     
     typealias Model = Album
     
@@ -19,50 +19,26 @@ class AlbumService: Fetcher {
     
     func fetchAlbums() {
         
-//        fetchList()
-//            .subscribeOn(Schedulers.io)
-//            .observeOn(Schedulers.main)
-//            .subscribe(onNext: { albums in
-//
-//                albums.forEach {
-//                    print($0)
-//                }
-//
-//            }, onError: { error in
-//
-//                debugPrint(error)
-//
-//            })
-//            .disposed(by: disposeBag)
+        //        fetchList()
+        //            .subscribeOn(Schedulers.io)
+        //            .observeOn(Schedulers.main)
+        //            .subscribe(onNext: { albums in
+        //                albums.forEach {
+        //                    print($0)
+        //                }
+        //            }, onError: { error in
+        //                debugPrint(error)
+        //            })
+        //            .disposed(by: disposeBag)
         
-//        fetchList(atPath: "top")
-//            .subscribeOn(Schedulers.io)
-//            .observeOn(Schedulers.main)
-//            .subscribe(onNext: { albums in
-//
-//                albums.forEach {
-//                    print($0)
-//                }
-//
-//            }, onError: { error in
-//
-//                debugPrint(error)
-//
-//            })
-//            .disposed(by: disposeBag)
-
-        let album = Album(id: 1)
-        fetchOne(album)
+        let album = Album(id: 11, title: "title", description: "description", artist: "artist", duration: 100)
+        create(album)
             .subscribeOn(Schedulers.io)
             .observeOn(Schedulers.main)
             .subscribe(onNext: { album in
-
                 print(album)
-
             }, onError: { error in
-
-                debugPrint(error)
-
+                print(error)
             })
             .disposed(by: disposeBag)
         

@@ -54,6 +54,16 @@ extension PopNetworking {
 
 extension PopNetworking {
     
+    static var jsonHeaders: [String: String] {
+        return [
+            "Content-Type": "application/json"
+        ]
+    }
+    
+}
+
+extension PopNetworking {
+    
     func rawRequest<T: Codable>(url: String, method: HTTPMethod = .get, parameters: Parameters? = nil, encoding: ParameterEncoding = URLEncoding.default, headers: HTTPHeaders? = nil, options: DecodeOptions, onSuccess: @escaping (T) -> Void, onError: @escaping (Error) -> Void) -> Request {
         
         return Alamofire
