@@ -8,14 +8,28 @@
 import Foundation
 import RxSwift
 
-public protocol Updater: PopNetworking {
-  func update<T: Updatable>(_ model: T, options: DecodeOptions) -> Observable<Model>
+/// Handles the update of resources
+public protocol Updater: ResourceHandler where ResourceType: Updatable {
+  /// Updates a resource the given resource
+  ///
+  /// - Parameter resource: The resource to update
+  /// - Parameter options: The options used to parse the response body
+  func update(_ resource: ResourceType, options: DecodeOptions) -> Observable<ResourceType>
 }
 
 public extension Updater {
-  func update<T: Updatable>(_ model: T, options: DecodeOptions = .memberKey) -> Observable<Model> {
-    let data = try! JSONEncoder().encode(model)
-    let encoding = CustomDataEncoding(data: data)
-    return rxRequest(url: router.show(model.id), method: .patch, parameters: nil, encoding: encoding, headers: Self.jsonHeaders, options: DecodeOptions.memberKey)
+  func update(_ resource: ResourceType, options: DecodeOptions = .memberKey) -> Observable<ResourceType> {
+    do {
+      let data = try JSONEncoder().encode(resource)
+      let encoding = CustomDataEncoding(data: data)
+      return rxRequest(url: router.show(resource.id),
+                       method: .patch,
+                       parameters: nil,
+                       encoding: encoding,
+                       headers: Self.jsonHeaders,
+                       options: DecodeOptions.memberKey)
+    } catch {
+      return .error(error)
+    }
   }
 }

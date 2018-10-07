@@ -10,21 +10,19 @@ import UIKit
 import PopNetworking
 
 class ViewController: UIViewController {
-
-    let albumService = AlbumService()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        albumService.fetchAlbums()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
+  let albumService = AlbumService()
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+  }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    albumService.fetchAlbums()
+  }
+  
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+  }
 }
 

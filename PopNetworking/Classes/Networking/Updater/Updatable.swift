@@ -7,4 +7,6 @@
 
 import Foundation
 
+/// Classes that conform to this protocol
+/// gains the ability of being updated
 public protocol Updatable: Fetchable {}
