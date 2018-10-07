@@ -8,9 +8,6 @@
 import Foundation
 
 public protocol Fetchable: Codable {
-    
-    associatedtype PrimaryKey
-    
-    var id: PrimaryKey { get }
-    
+  associatedtype PrimaryKey
+  var id: PrimaryKey { get }
 }

@@ -7,6 +7,4 @@
 
 import Foundation
 
-public protocol Updatable: Fetchable {
-    
-}
+public protocol Updatable: Fetchable {}

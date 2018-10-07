@@ -7,6 +7,4 @@
 
 import Foundation
 
-public protocol Manager: Fetcher, Creator, Updater {
-    
-}
+public protocol Manager: Fetcher, Creator, Updater {}
