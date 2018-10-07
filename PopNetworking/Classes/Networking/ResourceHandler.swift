@@ -1,6 +1,6 @@
 //
 //  PopNetworking.swift
-//  Nimble
+//  PopNetworking
 //
 //  Created by Alan Jeferson on 23/04/2018.
 //
@@ -9,8 +9,6 @@ import Foundation
 import Alamofire
 import RxSwift
 import RxCocoa
-
-//public typealias Record = Codable
 
 public protocol Resource: Codable {}
 

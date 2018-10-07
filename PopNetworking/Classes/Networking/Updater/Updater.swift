@@ -1,6 +1,6 @@
 //
 //  Updater.swift
-//  Alamofire
+//  PopNetworking
 //
 //  Created by Alan Jeferson on 09/05/2018.
 //
