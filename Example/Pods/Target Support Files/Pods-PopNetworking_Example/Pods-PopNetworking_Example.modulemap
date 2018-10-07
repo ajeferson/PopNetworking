@@ -1,6 +1,0 @@
-framework module Pods_PopNetworking_Example {
-  umbrella header "Pods-PopNetworking_Example-umbrella.h"
-
-  export *
-  module * { export * }
-}
