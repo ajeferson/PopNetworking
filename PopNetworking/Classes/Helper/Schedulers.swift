@@ -11,9 +11,7 @@ import RxSwift
 public typealias Scheduler = ImmediateSchedulerType
 
 public struct Schedulers {
-    
-    public static let io: Scheduler = ConcurrentDispatchQueueScheduler.init(queue: DispatchQueue.global(qos: .utility))
-    public static let main: Scheduler = MainScheduler.instance
-    public static let current: Scheduler = CurrentThreadScheduler.instance
-    
+  public static let io: Scheduler = ConcurrentDispatchQueueScheduler.init(queue: DispatchQueue.global(qos: .utility))
+  public static let main: Scheduler = MainScheduler.instance
+  public static let current: Scheduler = CurrentThreadScheduler.instance
 }
