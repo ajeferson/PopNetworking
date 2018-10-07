@@ -10,21 +10,17 @@ import Foundation
 import PopNetworking
 
 struct Album: Fetchable, Updatable {
-    
-    typealias PrimaryKey = Int
-    
-    let id: Int
-    let title: String
-    let description: String?
-    let artist: String
-    let duration: Int
-    
+  typealias PrimaryKey = Int
+  
+  let id: Int
+  let title: String
+  let description: String?
+  let artist: String
+  let duration: Int
 }
 
 extension Album {
-    
-    init(id: Int) {
-        self.init(id: id, title: "", description: nil, artist: "", duration: 0)
-    }
-    
+  init(id: Int) {
+    self.init(id: id, title: "", description: nil, artist: "", duration: 0)
+  }
 }

@@ -9,18 +9,27 @@ import Foundation
 import Alamofire
 import RxSwift
 
-public protocol Creator: PopNetworking {
-  func create(_ model: Model, options: DecodeOptions) -> Observable<Model>
+/// Handles creation of resources
+public protocol Creator: ResourceHandler {
+  /// Creates a resource on server
+  /// - Parameter resource: The resource to create
+  /// - Parameter options: The options used for decoding response
+  func create(_ resource: ResourceType, options: DecodeOptions) -> Observable<ResourceType>
 }
 
 extension Creator {
-  public func create(_ model: Model, options: DecodeOptions = .memberKey) -> Observable<Model> {
-    let data = try! JSONEncoder().encode(model)
-    let encoding = CustomDataEncoding(data: data)
-    return rxRequest(url: router.index, method: .post, parameters: nil, encoding: encoding, headers: Self.jsonHeaders, options: DecodeOptions.memberKey)
+  public func create(_ resource: ResourceType, options: DecodeOptions = .memberKey) -> Observable<ResourceType> {
+    do {
+      let data = try JSONEncoder().encode(resource)
+      let encoding = CustomDataEncoding(data: data)
+      return rxRequest(url: router.index, method: .post, parameters: nil, encoding: encoding, headers: Self.jsonHeaders, options: DecodeOptions.memberKey)
+    } catch {
+      return .error(error)
+    }
   }
 }
 
+// TODO Refactor this
 struct CustomDataEncoding: ParameterEncoding {
   let data: Data
   
