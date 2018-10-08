@@ -9,7 +9,7 @@
 import Foundation
 import PopNetworking
 
-struct Album: Fetchable, Updatable {
+struct Album: Resource {
   typealias PrimaryKey = Int
   
   let id: Int

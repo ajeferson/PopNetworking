@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
   
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-    PopNetworkingConfig.shared.baseURL = "http://192.168.10.4:3000"
+    PopNetworkingConfig.shared.baseURL = "http://192.168.0.14:3000"
     return true
   }
 }

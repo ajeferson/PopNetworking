@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 
 /// Handles the fetching of resources
-public protocol Fetcher: ResourceHandler where ResourceType: Fetchable {
+public protocol Fetcher: ResourceHandler {
   /// Fetches a list of resources
   ///
   /// - Parameter options: Decoding options for the response
@@ -29,14 +29,14 @@ public protocol Fetcher: ResourceHandler where ResourceType: Fetchable {
 
 public extension Fetcher {
   func fetchList(options: DecodeOptions = .collectionKey) -> Observable<[ResourceType]> {
-    return rxRequest(url: router.index, options: options)
+    return requestResource(url: router.index, options: options)
   }
   
   func fetchList(at path: String, options: DecodeOptions = .collectionKey) -> Observable<[ResourceType]> {
-    return rxRequest(url: router.collection(path: path), options: options)
+    return requestResource(url: router.collection(path: path), options: options)
   }
   
   func fetchOne(_ id: ResourceType.PrimaryKey, options: DecodeOptions = .memberKey) -> Observable<ResourceType> {
-    return rxRequest(url: router.show(id), options: options)
+    return requestResource(url: router.show(id), options: options)
   }
 }

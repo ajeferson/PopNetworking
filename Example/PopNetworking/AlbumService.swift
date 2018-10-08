@@ -11,12 +11,12 @@ import RxSwift
 import RxCocoa
 import PopNetworking
 
-class AlbumService: Manager {
-  typealias ResourceType = Album
-  
-  private let disposeBag = DisposeBag()
-  
-  func fetchAlbums() {
+//class AlbumService: Manager {
+//  typealias ResourceType = Album
+//
+//  private let disposeBag = DisposeBag()
+//
+//  func fetchAlbums() {
     //        fetchList()
     //            .subscribeOn(Schedulers.io)
     //            .observeOn(Schedulers.main)
@@ -40,15 +40,20 @@ class AlbumService: Manager {
     //            })
     //            .disposed(by: disposeBag)
     
-    let album = Album(id: 6, title: "updated", description: "description", artist: "artist", duration: 100)
-    update(album)
-      .subscribeOn(Schedulers.io)
-      .observeOn(Schedulers.main)
-      .subscribe(onNext: { album in
-        print(album)
-      }, onError: { error in
-        print(error)
-      })
-      .disposed(by: disposeBag)
-  }
-}
+//    let album = Album(id: 6, title: "updated", description: "description", artist: "artist", duration: 100)
+//    update(album)
+//      .subscribeOn(Schedulers.io)
+//      .observeOn(Schedulers.main)
+//      .subscribe(onNext: { album in
+//        print(album)
+//      }, onError: { error in
+//        print(error)
+//      })
+//      .disposed(by: disposeBag)
+//    fetchOne(1)
+//      .subscribeOn(Schedulers.io)
+//      .observeOn(Schedulers.main)
+//      .subscribe()
+//      .disposed(by: disposeBag)
+//  }
+//}
