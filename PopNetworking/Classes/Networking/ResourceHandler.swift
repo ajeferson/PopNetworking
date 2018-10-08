@@ -15,7 +15,7 @@ import RxCocoa
 public protocol Resource: Codable {
   /// The type of the unique identifier
   associatedtype PrimaryKey
-  
+
   /// The unique identifier of this resource
   var id: PrimaryKey { get }
 }
@@ -33,7 +33,7 @@ public protocol ResourceHandler: class {
   /// The type that's associated with this handler
   /// (e.g. Car can be used for fetching, creating, updating car objects)
   associatedtype ResourceType: Resource
-  
+
   /// The class that's responsible for providing urls for the record
   var router: Router { get }
 }
@@ -102,7 +102,7 @@ extension ResourceHandler {
         }
       })
   }
-  
+
   /// A reactive wrapper for HTTP requests
   ///
   /// - Parameters:
@@ -133,13 +133,13 @@ extension ResourceHandler {
       }, onError: { error in
         observable.onError(error)
       })
-      
+
       return Disposables.create {
         request.cancel()
       }
     }
   }
-  
+
   /// A reactive wrapper that maps a HTTP request to Resource objects
   ///
   /// - Parameters:
@@ -150,12 +150,14 @@ extension ResourceHandler {
   ///   - options: How to decode the response body
   ///   - onSuccess: Code to execute after a succeeded request
   ///   - onError: Code to execute after a failed request
-  func requestResource<T: Codable>(url: String,
-                                method: HTTPMethod = .get,
-                                parameters: Parameters? = nil,
-                                encoding: ParameterEncoding = URLEncoding.default,
-                                headers: HTTPHeaders? = nil,
-                                options: DecodeOptions) -> Observable<T> {
+  func requestResource<T: Codable>(
+    url: String,
+    method: HTTPMethod = .get,
+    parameters: Parameters? = nil,
+    encoding: ParameterEncoding = URLEncoding.default,
+    headers: HTTPHeaders? = nil,
+    options: DecodeOptions) -> Observable<T> {
+
     return requestData(url: url,
                        method: method,
                        parameters: parameters,
@@ -168,14 +170,14 @@ extension ResourceHandler {
         }
         let decoder = JSONDecoder()
         let results: T?
-        
+
         switch strongSelf.rootKey(for: options) {
         case .none:
           results = try? decoder.decode(T.self, from: data)
         case .key(let keyPath):
           results = (try? decoder.decode([String: T].self, from: data))?[keyPath]
         }
-        
+
         guard let resource = results else {
           throw PopError.decode
         }
