@@ -1,6 +1,6 @@
 //
 //  Updater.swift
-//  Alamofire
+//  PopNetworking
 //
 //  Created by Alan Jeferson on 09/05/2018.
 //
@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 
 /// Handles the update of resources
-public protocol Updater: ResourceHandler where ResourceType: Updatable {
+public protocol Updater: ResourceHandler {
   /// Updates a resource the given resource
   ///
   /// - Parameter resource: The resource to update
@@ -22,12 +22,12 @@ public extension Updater {
     do {
       let data = try JSONEncoder().encode(resource)
       let encoding = CustomDataEncoding(data: data)
-      return rxRequest(url: router.show(resource.id),
-                       method: .patch,
-                       parameters: nil,
-                       encoding: encoding,
-                       headers: Self.jsonHeaders,
-                       options: DecodeOptions.memberKey)
+      return requestResource(url: router.show(resource.id),
+                             method: .patch,
+                             parameters: nil,
+                             encoding: encoding,
+                             headers: Self.jsonHeaders,
+                             options: DecodeOptions.memberKey)
     } catch {
       return .error(error)
     }

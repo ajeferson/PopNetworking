@@ -1,6 +1,6 @@
 //
 //  Schedulers.swift
-//  Alamofire
+//  PopNetworking
 //
 //  Created by Alan Jeferson on 23/04/2018.
 //

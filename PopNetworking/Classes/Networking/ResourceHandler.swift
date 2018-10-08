@@ -1,6 +1,6 @@
 //
 //  PopNetworking.swift
-//  Nimble
+//  PopNetworking
 //
 //  Created by Alan Jeferson on 23/04/2018.
 //
@@ -10,9 +10,15 @@ import Alamofire
 import RxSwift
 import RxCocoa
 
-//public typealias Record = Codable
-
-public protocol Resource: Codable {}
+/// The Resource is the base type that represents
+/// some entity with which the handlers can work with
+public protocol Resource: Codable {
+  /// The type of the unique identifier
+  associatedtype PrimaryKey
+  
+  /// The unique identifier of this resource
+  var id: PrimaryKey { get }
+}
 
 public extension Resource {
   static var name: String {
@@ -23,7 +29,7 @@ public extension Resource {
 
 /// A class which contains the basic methods and properties
 /// for handling networking operations over an object
-public protocol ResourceHandler {
+public protocol ResourceHandler: class {
   /// The type that's associated with this handler
   /// (e.g. Car can be used for fetching, creating, updating car objects)
   associatedtype ResourceType: Resource
@@ -73,14 +79,14 @@ extension ResourceHandler {
   ///   - options: How to decode the response body
   ///   - onSuccess: Code to execute after a succeeded request
   ///   - onError: Code to execute after a failed request
-  func rawRequest<T: Codable>(url: String,
-                              method: HTTPMethod = .get,
-                              parameters: Parameters? = nil,
-                              encoding: ParameterEncoding = URLEncoding.default,
-                              headers: HTTPHeaders? = nil,
-                              options: DecodeOptions,
-                              onSuccess: @escaping (T) -> Void,
-                              onError: @escaping (Error) -> Void) -> Request {
+  func request(url: String,
+               method: HTTPMethod = .get,
+               parameters: Parameters? = nil,
+               encoding: ParameterEncoding = URLEncoding.default,
+               headers: HTTPHeaders? = nil,
+               options: DecodeOptions,
+               onSuccess: @escaping (Data) -> Void,
+               onError: @escaping (Error) -> Void) -> Request {
     return Alamofire
       .request(url,
                method: method,
@@ -88,25 +94,9 @@ extension ResourceHandler {
                encoding: encoding,
                headers: headers)
       .responseData(completionHandler: { response in
-        
         switch response.result {
         case .success(let value):
-          let decoder = JSONDecoder()
-          let results: T?
-          
-          switch self.rootKey(for: options) {
-          case .none:
-            results = try? decoder.decode(T.self, from: value)
-          case .key(let keyPath):
-            results = (try? decoder.decode([String: T].self, from: value))?[keyPath]
-          }
-          
-          guard let data = results else {
-            onError(PopError.decode)
-            return
-          }
-          onSuccess(data)
-          
+          onSuccess(value)
         case .failure:
           onError(response.isNetworkError ? PopError.network : PopError.unknown)
         }
@@ -123,17 +113,23 @@ extension ResourceHandler {
   ///   - options: How to decode the response body
   ///   - onSuccess: Code to execute after a succeeded request
   ///   - onError: Code to execute after a failed request
-  func rxRequest<T: Codable>(url: String, method: HTTPMethod = .get, parameters: Parameters? = nil, encoding: ParameterEncoding = URLEncoding.default, headers: HTTPHeaders? = nil, options: DecodeOptions) -> Observable<T> {
+  func requestData(url: String,
+                   method: HTTPMethod = .get,
+                   parameters: Parameters? = nil,
+                   encoding: ParameterEncoding = URLEncoding.default,
+                   headers: HTTPHeaders? = nil,
+                   options: DecodeOptions) -> Observable<Data> {
     return Observable.create { observable in
-      let request = self.rawRequest(
+      let request = self.request(
         url: url,
         method: method,
         parameters: parameters,
         encoding: encoding,
         headers: headers,
         options: options,
-        onSuccess: { results in
-          observable.onNext(results)
+        onSuccess: { data in
+          observable.onNext(data)
+          observable.onCompleted()
       }, onError: { error in
         observable.onError(error)
       })
@@ -141,6 +137,49 @@ extension ResourceHandler {
       return Disposables.create {
         request.cancel()
       }
+    }
+  }
+  
+  /// A reactive wrapper that maps a HTTP request to Resource objects
+  ///
+  /// - Parameters:
+  ///   - url: The to url of the request
+  ///   - method: The HTTP method of the request (e.g. get, post)
+  ///   - encoding: How parameters should be encoded
+  ///   - headers: The headers to send on the request
+  ///   - options: How to decode the response body
+  ///   - onSuccess: Code to execute after a succeeded request
+  ///   - onError: Code to execute after a failed request
+  func requestResource<T: Codable>(url: String,
+                                method: HTTPMethod = .get,
+                                parameters: Parameters? = nil,
+                                encoding: ParameterEncoding = URLEncoding.default,
+                                headers: HTTPHeaders? = nil,
+                                options: DecodeOptions) -> Observable<T> {
+    return requestData(url: url,
+                       method: method,
+                       parameters: parameters,
+                       encoding: encoding,
+                       headers: headers,
+                       options: options)
+      .map { [weak self] data -> T in
+        guard let strongSelf = self else {
+          throw PopError.unknown
+        }
+        let decoder = JSONDecoder()
+        let results: T?
+        
+        switch strongSelf.rootKey(for: options) {
+        case .none:
+          results = try? decoder.decode(T.self, from: data)
+        case .key(let keyPath):
+          results = (try? decoder.decode([String: T].self, from: data))?[keyPath]
+        }
+        
+        guard let resource = results else {
+          throw PopError.decode
+        }
+        return resource
     }
   }
 }

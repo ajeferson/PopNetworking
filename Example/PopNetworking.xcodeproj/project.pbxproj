@@ -17,6 +17,8 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		984102607EC7A44C8BDBBBD6 /* Pods_PopNetworking_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9ACBBE0705C6D9584C7E1CE /* Pods_PopNetworking_Example.framework */; };
+		F37ADCF9216ACC96008D688F /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37ADCF8216ACC96008D688F /* Post.swift */; };
+		F37ADCFB216ACD82008D688F /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37ADCFA216ACD82008D688F /* PostService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		96F6A56A60A0324D63812D94 /* Pods_PopNetworking_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PopNetworking_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9ACBBE0705C6D9584C7E1CE /* Pods_PopNetworking_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PopNetworking_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD8CB8EADAFBA2E656120D9E /* PopNetworking.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = PopNetworking.podspec; path = ../PopNetworking.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		F37ADCF8216ACC96008D688F /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		F37ADCFA216ACD82008D688F /* PostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +120,8 @@
 				607FACD31AFB9204008FA782 /* Supporting Files */,
 				2833D2B8208E2CCC002A7DD6 /* AlbumService.swift */,
 				2833D2C3208E3040002A7DD6 /* Album.swift */,
+				F37ADCF8216ACC96008D688F /* Post.swift */,
+				F37ADCFA216ACD82008D688F /* PostService.swift */,
 			);
 			name = Example;
 			path = PopNetworking;
@@ -358,9 +364,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				F37ADCFB216ACD82008D688F /* PostService.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				2833D2B9208E2CCC002A7DD6 /* AlbumService.swift in Sources */,
 				2833D2C4208E3040002A7DD6 /* Album.swift in Sources */,
+				F37ADCF9216ACC96008D688F /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

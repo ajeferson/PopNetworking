@@ -1,6 +1,6 @@
 //
 //  Poster.swift
-//  Alamofire
+//  PopNetworking
 //
 //  Created by Alan Jeferson on 09/05/2018.
 //
@@ -22,7 +22,12 @@ extension Creator {
     do {
       let data = try JSONEncoder().encode(resource)
       let encoding = CustomDataEncoding(data: data)
-      return rxRequest(url: router.index, method: .post, parameters: nil, encoding: encoding, headers: Self.jsonHeaders, options: DecodeOptions.memberKey)
+      return requestResource(url: router.index,
+                             method: .post,
+                             parameters: nil,
+                             encoding: encoding,
+                             headers: Self.jsonHeaders,
+                             options: DecodeOptions.memberKey)
     } catch {
       return .error(error)
     }

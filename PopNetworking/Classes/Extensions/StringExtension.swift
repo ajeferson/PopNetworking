@@ -1,6 +1,6 @@
 //
 //  StringExtension.swift
-//  Alamofire
+//  PopNetworking
 //
 //  Created by Alan Jeferson on 10/7/18.
 //
