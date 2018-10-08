@@ -11,10 +11,10 @@ import Foundation
 public enum PopError: String, Error {
   /// Failure due to internet connection
   case network = "Check your internet connection"
-  
+
   /// Failure due to inability of parsing a JSON body
   case decode = "Could not parse data"
-  
+
   /// Any other error
   case unknown = "An error has occurred, please try again later"
 }

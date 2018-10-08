@@ -37,9 +37,9 @@ extension Creator {
 // TODO Refactor this
 struct CustomDataEncoding: ParameterEncoding {
   let data: Data
-  
+
   func encode(_ urlRequest: URLRequestConvertible, with parameters: Parameters?) throws -> URLRequest {
-    var request = try! URLEncoding().encode(urlRequest, with: parameters)
+    var request = try URLEncoding().encode(urlRequest, with: parameters)
     request.httpBody = data
     return request
   }

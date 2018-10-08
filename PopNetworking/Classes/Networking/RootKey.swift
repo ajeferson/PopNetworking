@@ -11,7 +11,7 @@ import Foundation
 enum RootKey {
   /// No key
   case none
-  
+
   /// Type of resource that uses the associated values
   /// as the response body's root key
   /// {

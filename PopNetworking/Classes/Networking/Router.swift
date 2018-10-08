@@ -14,10 +14,10 @@ import Foundation
 public protocol Router {
   /// The index path for the resource
   var index: String { get }
-  
+
   /// A path for a instance of the resource
   func show(_ id: Any) -> String
-  
+
   /// A path for a collection of instances of the reource
   func collection(path: String) -> String
 }
@@ -28,19 +28,19 @@ public protocol Router {
 struct DefaultRouter<T: Resource>: Router {
   /// The base url to which paths are appended
   let baseURL: String
-  
+
   init(baseURL: String) {
     self.baseURL = baseURL
   }
- 
+
   var index: String {
     return "\(baseURL)/\(T.name.pluralized())"
   }
-  
+
   func show(_ id: Any) -> String {
     return "\(index)/\(id)"
   }
-  
+
   func collection(path: String) -> String {
     return "\(index)/\(path)"
   }

@@ -183,6 +183,7 @@
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
 				2234C1D33BF376718CDEC3CD /* [CP] Embed Pods Frameworks */,
+				F3ADA366216BC6C7009AB811 /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -337,6 +338,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PopNetworking_Tests/Pods-PopNetworking_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		F3ADA366216BC6C7009AB811 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"";
 		};
 		FC1D2FD12926627B8A38C4B1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

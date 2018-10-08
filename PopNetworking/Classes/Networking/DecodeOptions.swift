@@ -25,7 +25,7 @@ public enum DecodeOptions {
   ///     }
   /// ]
   case none
-  
+
   /// Type of decoding that uses the pluralized resource name
   /// as the response body's root key
   /// {
@@ -41,7 +41,7 @@ public enum DecodeOptions {
   ///     ]
   /// }
   case collectionKey
-  
+
   /// Type of resource that uses the singular resource name
   /// as the response body's root key
   /// {
@@ -51,7 +51,7 @@ public enum DecodeOptions {
   ///     }
   /// }
   case memberKey
-  
+
   /// Type of resource that uses the associated values
   /// as the response body's root key
   /// {
