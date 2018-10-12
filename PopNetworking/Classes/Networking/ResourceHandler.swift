@@ -8,7 +8,6 @@
 import Foundation
 import Alamofire
 import RxSwift
-import RxCocoa
 
 typealias Params = Codable
 
