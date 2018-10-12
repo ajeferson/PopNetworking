@@ -8,7 +8,6 @@
 
 import Foundation
 import RxSwift
-import RxCocoa
 import PopNetworking
 
 //class AlbumService: Manager {
