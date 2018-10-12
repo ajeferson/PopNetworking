@@ -18,7 +18,17 @@ class ViewController: UIViewController {
   
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
+    
+//    let createPost = Post(title: "Some", body: "Post")
+//    postService.create(post: createPost)
+
     postService.fetchPosts()
+//    postService.fetchPost(id: 5)
+    
+//    let updatePost = Post(id: 5, title: "Foo", body: "Bar")
+//    postService.update(updatePost)
+    
+//    postService.delete(5)
   }
 }
 

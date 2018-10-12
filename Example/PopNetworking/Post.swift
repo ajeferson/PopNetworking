@@ -16,3 +16,11 @@ struct Post: Resource {
   var title: String
   var body: String
 }
+
+extension Post {
+  init(title: String, body: String) {
+    self.id = 0
+    self.title = title
+    self.body = body
+  }
+}

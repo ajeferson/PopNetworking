@@ -16,13 +16,52 @@ class PostService: ResourceManager {
   private let bag = DisposeBag()
   
   func fetchPosts() {
-//    fetchOne(5)
-//    fetchList()
-    delete(4)
-      .debug()
+    fetchList()
+      .subscribeOn(Schedulers.io)
+      .observeOn(Schedulers.main)
+      .subscribe(onNext: { posts in
+        posts.forEach {
+          print($0)
+        }
+      })
+      .disposed(by: bag)
+  }
+  
+  func fetchPost(id: Int) {
+    fetchOne(id)
+      .subscribeOn(Schedulers.io)
+      .observeOn(Schedulers.main)
+      .subscribe(onNext: { post in
+        print(post)
+      })
+      .disposed(by: bag)
+  }
+  
+  func create(post: Post) {
+    create(post)
       .subscribeOn(Schedulers.io)
       .observeOn(Schedulers.main)
       .subscribe()
+      .disposed(by: bag)
+  }
+  
+  func update(_ post: Post) {
+    update(post)
+      .subscribeOn(Schedulers.io)
+      .observeOn(Schedulers.main)
+      .subscribe(onNext: { post in
+        print(post)
+      })
+      .disposed(by: bag)
+  }
+  
+  func delete(_ id: Int) {
+    delete(id)
+      .subscribeOn(Schedulers.io)
+      .observeOn(Schedulers.main)
+      .subscribe(onNext: { _ in
+        print("Deleted!")
+      })
       .disposed(by: bag)
   }
 }

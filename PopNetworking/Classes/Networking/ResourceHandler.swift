@@ -10,6 +10,8 @@ import Alamofire
 import RxSwift
 import RxCocoa
 
+typealias Params = Codable
+
 /// The Resource is the base type that represents
 /// some entity with which the handlers can work with
 public protocol Resource: Codable {
@@ -45,20 +47,6 @@ public extension ResourceHandler {
   }
 }
 
-private extension ResourceHandler {
-  /// The root key of a response body
-  ///
-  /// - Parameter decodeOptions: The way of decoding the response body
-  func rootKey(for decodeOptions: DecodeOptions) -> RootKey {
-    switch decodeOptions {
-    case .none: return RootKey.none
-    case .collectionKey: return RootKey.key(ResourceType.name.pluralized())
-    case .memberKey: return RootKey.key(ResourceType.name)
-    case .key(let value): return RootKey.key(value)
-    }
-  }
-}
-
 // TODO Refactor this
 extension ResourceHandler {
   static var jsonHeaders: [String: String] {
@@ -76,7 +64,6 @@ extension ResourceHandler {
   ///   - method: The HTTP method of the request (e.g. get, post)
   ///   - encoding: How parameters should be encoded
   ///   - headers: The headers to send on the request
-  ///   - options: How to decode the response body
   ///   - onSuccess: Code to execute after a succeeded request
   ///   - onError: Code to execute after a failed request
   func request(url: String,
@@ -84,7 +71,6 @@ extension ResourceHandler {
                parameters: Parameters? = nil,
                encoding: ParameterEncoding = URLEncoding.default,
                headers: HTTPHeaders? = nil,
-               options: DecodeOptions,
                onSuccess: @escaping (Data) -> Void,
                onError: @escaping (Error) -> Void) -> Request {
     return Alamofire
@@ -97,7 +83,8 @@ extension ResourceHandler {
         switch response.result {
         case .success(let value):
           onSuccess(value)
-        case .failure:
+        case .failure(let error):
+          print(error)
           onError(response.isNetworkError ? PopError.network : PopError.unknown)
         }
       })
@@ -110,15 +97,13 @@ extension ResourceHandler {
   ///   - method: The HTTP method of the request (e.g. get, post)
   ///   - encoding: How parameters should be encoded
   ///   - headers: The headers to send on the request
-  ///   - options: How to decode the response body
   ///   - onSuccess: Code to execute after a succeeded request
   ///   - onError: Code to execute after a failed request
   func requestData(url: String,
                    method: HTTPMethod = .get,
                    parameters: Parameters? = nil,
                    encoding: ParameterEncoding = URLEncoding.default,
-                   headers: HTTPHeaders? = nil,
-                   options: DecodeOptions) -> Observable<Data> {
+                   headers: HTTPHeaders? = nil) -> Observable<Data> {
     return Observable.create { observable in
       let request = self.request(
         url: url,
@@ -126,7 +111,6 @@ extension ResourceHandler {
         parameters: parameters,
         encoding: encoding,
         headers: headers,
-        options: options,
         onSuccess: { data in
           observable.onNext(data)
           observable.onCompleted()
@@ -155,33 +139,16 @@ extension ResourceHandler {
     method: HTTPMethod = .get,
     parameters: Parameters? = nil,
     encoding: ParameterEncoding = URLEncoding.default,
-    headers: HTTPHeaders? = nil,
-    options: DecodeOptions) -> Observable<T> {
+    headers: HTTPHeaders? = nil) -> Observable<T> {
 
     return requestData(url: url,
                        method: method,
                        parameters: parameters,
                        encoding: encoding,
-                       headers: headers,
-                       options: options)
-      .map { [weak self] data -> T in
-        guard let strongSelf = self else {
-          throw PopError.unknown
-        }
+                       headers: headers)
+      .map { data -> T in
         let decoder = JSONDecoder()
-        let results: T?
-
-        switch strongSelf.rootKey(for: options) {
-        case .none:
-          results = try? decoder.decode(T.self, from: data)
-        case .key(let keyPath):
-          results = (try? decoder.decode([String: T].self, from: data))?[keyPath]
-        }
-
-        guard let resource = results else {
-          throw PopError.decode
-        }
-        return resource
+        return try decoder.decode(T.self, from: data)
     }
   }
 }

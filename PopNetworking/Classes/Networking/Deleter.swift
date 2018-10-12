@@ -31,8 +31,7 @@ public extension Deleter {
                        method: .delete,
                        parameters: nil,
                        encoding: URLEncoding.default,
-                       headers: nil,
-                       options: .none).map { _ -> Void in }
+                       headers: nil).map { _ -> Void in }
   }
 
   public func delete(_ resource: ResourceType) -> Observable<Void> {

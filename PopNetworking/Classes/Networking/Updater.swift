@@ -13,12 +13,11 @@ public protocol Updater: ResourceHandler {
   /// Updates a resource the given resource
   ///
   /// - Parameter resource: The resource to update
-  /// - Parameter options: The options used to parse the response body
-  func update(_ resource: ResourceType, options: DecodeOptions) -> Observable<ResourceType>
+  func update(_ resource: ResourceType) -> Observable<ResourceType>
 }
 
 public extension Updater {
-  func update(_ resource: ResourceType, options: DecodeOptions = .memberKey) -> Observable<ResourceType> {
+  func update(_ resource: ResourceType) -> Observable<ResourceType> {
     do {
       let data = try JSONEncoder().encode(resource)
       let encoding = CustomDataEncoding(data: data)
@@ -26,8 +25,7 @@ public extension Updater {
                              method: .patch,
                              parameters: nil,
                              encoding: encoding,
-                             headers: Self.jsonHeaders,
-                             options: DecodeOptions.memberKey)
+                             headers: Self.jsonHeaders)
     } catch {
       return .error(error)
     }
