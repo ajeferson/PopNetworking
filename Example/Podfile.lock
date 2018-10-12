@@ -1,13 +1,16 @@
 PODS:
   - Alamofire (4.7.3)
+  - Pluralize.swift (1.0)
   - PopNetworking (0.1.0):
     - Alamofire (~> 4.7)
+    - Pluralize.swift
     - RxSwift (~> 4.0)
     - SwiftLint (~> 0.1)
   - RxSwift (4.3.1)
   - SwiftLint (0.27.0)
 
 DEPENDENCIES:
+  - "Pluralize.swift (from `git@github.com:ajeferson/Pluralize.swift.git`, branch `feature/swift-update`)"
   - PopNetworking (from `../`)
 
 SPEC REPOS:
@@ -17,15 +20,24 @@ SPEC REPOS:
     - SwiftLint
 
 EXTERNAL SOURCES:
+  Pluralize.swift:
+    :branch: feature/swift-update
+    :git: "git@github.com:ajeferson/Pluralize.swift.git"
   PopNetworking:
     :path: "../"
 
+CHECKOUT OPTIONS:
+  Pluralize.swift:
+    :commit: 6b9acef83062441da8a432dcd45827c8bb0a4b19
+    :git: "git@github.com:ajeferson/Pluralize.swift.git"
+
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
-  PopNetworking: 0f651c13683b24d8f6471941db4fab023dca4d6c
+  Pluralize.swift: 39197053939578ca42c3034081d2887016ce5a33
+  PopNetworking: d9748155b99d1c255a11e1a6bf406e0468f0036b
   RxSwift: fe0fd770a43acdb7d0a53da411c9b892e69bb6e4
   SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
 
-PODFILE CHECKSUM: 82653c052a9d19f046056b4df115fb06d49af10b
+PODFILE CHECKSUM: 2f18ec0225a4c19ef7d44478f470c0bd0afbde8e
 
 COCOAPODS: 1.5.3

@@ -10,7 +10,7 @@ import Foundation
 extension String {
   /// Returns this string in its pluralized form
   /// TODO: Actual pluralizing
-  func pluralized() -> String {
-    return "\(self)s"
-  }
+//  func pluralized() -> String {
+//    return "\(self)s"
+//  }
 }

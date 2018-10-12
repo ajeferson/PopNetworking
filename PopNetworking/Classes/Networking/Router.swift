@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Pluralize_swift
 
 /// The class who conforms to this protocol should provide
 /// the endpoints that will be used by ResourceHandler classes.
@@ -39,7 +40,7 @@ struct DefaultRouter<T: Resource>: Router {
   }
 
   var resourcePath: String {
-    return "\(baseURL)/\(T.name.pluralized())"
+    return "\(baseURL)/\(T.name.pluralize())"
   }
 
   var index: String {

@@ -6,5 +6,6 @@ target 'PopNetworking_Example' do
 
   target 'PopNetworking_Tests' do
     inherit! :search_paths
+    pod 'Pluralize.swift', :git => 'git@github.com:ajeferson/Pluralize.swift.git', :branch => 'feature/swift-update'
   end
 end
