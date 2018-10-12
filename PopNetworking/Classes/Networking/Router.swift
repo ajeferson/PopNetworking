@@ -12,6 +12,9 @@ import Foundation
 /// Each ResourceHandler should have its own router,
 /// so this is "resource-scoped".
 public protocol Router {
+  /// The base path for the resource
+  var resourcePath: String { get }
+
   /// The index path for the resource
   var index: String { get }
 
@@ -21,6 +24,8 @@ public protocol Router {
   /// A path for a collection of instances of the reource
   func collection(path: String) -> String
 }
+
+// TODO Better .json extension handling
 
 /// The default router that's used by default
 /// implementation of ResourceHandler classes
@@ -33,15 +38,19 @@ struct DefaultRouter<T: Resource>: Router {
     self.baseURL = baseURL
   }
 
-  var index: String {
+  var resourcePath: String {
     return "\(baseURL)/\(T.name.pluralized())"
   }
 
+  var index: String {
+    return "\(resourcePath).json"
+  }
+
   func show(_ id: Any) -> String {
-    return "\(index)/\(id)"
+    return "\(resourcePath)/\(id).json"
   }
 
   func collection(path: String) -> String {
-    return "\(index)/\(path)"
+    return "\(resourcePath)/\(path).json"
   }
 }

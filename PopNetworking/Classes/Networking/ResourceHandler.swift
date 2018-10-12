@@ -29,14 +29,6 @@ public extension Resource {
   }
 }
 
-extension Resource {
-  /// Returns this Resource as parameters for requests
-  func params() -> [String: Self] {
-    let name = type(of: self).name
-    return [name: self]
-  }
-}
-
 /// A class which contains the basic methods and properties
 /// for handling networking operations over an object
 public protocol ResourceHandler: class {
@@ -91,7 +83,8 @@ extension ResourceHandler {
         switch response.result {
         case .success(let value):
           onSuccess(value)
-        case .failure:
+        case .failure(let error):
+          print(error)
           onError(response.isNetworkError ? PopError.network : PopError.unknown)
         }
       })

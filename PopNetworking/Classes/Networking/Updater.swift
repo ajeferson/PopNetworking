@@ -19,7 +19,7 @@ public protocol Updater: ResourceHandler {
 public extension Updater {
   func update(_ resource: ResourceType) -> Observable<ResourceType> {
     do {
-      let data = try JSONEncoder().encode(resource.params())
+      let data = try JSONEncoder().encode(resource)
       let encoding = CustomDataEncoding(data: data)
       return requestResource(url: router.show(resource.id),
                              method: .patch,

@@ -20,7 +20,7 @@ public protocol Creator: ResourceHandler {
 extension Creator {
   public func create(_ resource: ResourceType) -> Observable<ResourceType> {
     do {
-      let data = try JSONEncoder().encode(resource.params())
+      let data = try JSONEncoder().encode(resource)
       let encoding = CustomDataEncoding(data: data)
       return requestResource(url: router.index,
                              method: .post,
