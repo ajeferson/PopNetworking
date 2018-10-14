@@ -26,8 +26,6 @@ public protocol Router {
   func collection(path: String) -> String
 }
 
-// TODO Better .json extension handling
-
 /// The default router that's used by default
 /// implementation of ResourceHandler classes
 /// It uses the same standard as used in Ruby on Rails.
@@ -44,14 +42,14 @@ struct DefaultRouter<T: Resource>: Router {
   }
 
   var index: String {
-    return "\(resourcePath).json"
+    return "\(resourcePath)"
   }
 
   func show(_ id: Any) -> String {
-    return "\(resourcePath)/\(id).json"
+    return "\(resourcePath)/\(id)"
   }
 
   func collection(path: String) -> String {
-    return "\(resourcePath)/\(path).json"
+    return "\(resourcePath)/\(path)"
   }
 }

@@ -21,4 +21,5 @@ type_name:
 identifier_name:
   min_length: 2
   max_length: 20
+function_parameter_count: 7
 reporter: "xcode"

@@ -33,7 +33,6 @@ extension Creator {
   }
 }
 
-// TODO Refactor this
 struct CustomDataEncoding: ParameterEncoding {
   let data: Data
 
